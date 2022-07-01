@@ -7,6 +7,5 @@ with open("dataset_24465_4.txt") as test, open('test_copy_1.txt', 'w') as test_c
 
     # for lines in reversed(test.readlines()):
     #    test_copy.write(lines)
-
     test_copy.writelines(reversed(test.readlines()))
 print('for test commit')
