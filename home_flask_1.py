@@ -24,7 +24,7 @@ def generate_password():
             break
     return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {pas_check}</h2></center>"
 
-#average
+#average (первій вариант)
 @app.route('/average')
 def get_average_parameters():
     # откріваем файл создаем список из строк файла CSV
@@ -40,6 +40,26 @@ def get_average_parameters():
     average_height = round(height/len(data), 2)
     average_weight = round(weight/len(data), 2)
     return f"<center><h2><u>average_height</u> = {average_height} inches, <u>average_weight</u> = {average_weight} pounds.</h2></center>"
+
+# Вариант без создания списка (раскоментить)
+#average
+# @app.route('/average')
+# def get_average_parameters():
+#     # откріваем файл CSV
+#     with open("hw.csv", newline='') as file:
+#         reader = csv.DictReader(file, delimiter=',')
+#         count = 0
+#         height = weight = 0.0
+#     # пробегаем построчно и считаем
+#         for row in reader:
+#             height += float(row[' Height(Inches)'])
+#             weight += float(row[' Weight(Pounds)'])
+#             count += 1
+#     ## считаем среднее и округляем
+#         average_height = round((height / count), 2)
+#         average_weight = round((weight / count), 2)
+#     return f"<center><h2><u>average_height</u> = {average_height} inches, <u>average_weight</u> = {average_weight} pounds.</h2></center>"
+#
 
 if __name__ == '__main__':
     app.run(debug=True)
