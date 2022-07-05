@@ -13,6 +13,17 @@ def index():
 
 #passwoerd
 @app.route('/password')
+# password = []
+# for _ in range(random.randrange(2, 5)):
+#     password.append((string.ascii_uppercase)[random.randrange(len(string.ascii_uppercase))])
+#     password.append((string.ascii_lowercase)[random.randrange(len(string.ascii_lowercase))])
+# for _ in range(random.randrange(3, 5)):
+#     password.append((string.digits)[random.randrange(len(string.digits))])
+#     password.append((string.punctuation)[random.randrange(len(string.punctuation))])
+# random.shuffle(password)
+# pas = ''.join(password)
+# return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {(''.join(password))}</h2></center>"
+
 def generate_password():
     while True:
         # создаем рандомній список 10-20 символов
