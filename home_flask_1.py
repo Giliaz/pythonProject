@@ -14,15 +14,21 @@ def index():
 #passwoerd
 @app.route('/password')
 def generate_password():
-    while True:
-        # создаем рандомній список 10-20 символов
-        password = ([chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))])
-        # конвертируем список в строку
-        pas_check = ''.join(password)
-        # проверяым регулярным выражением на соответствие пароля ТЗ
-        if re.match(r'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!"#$%&(){}\'*+,-./\\:;<>=?@\[\]^_`|~])', pas_check):
-            break
+    password = ([chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))])
+    pas_check = ''.join(password)
     return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {pas_check}</h2></center>"
+
+#  єто я так задолбался в первій раз)))
+# password = []
+# for _ in range(random.randrange(2, 5)):
+#     password.append((string.ascii_uppercase)[random.randrange(len(string.ascii_uppercase))])
+#     password.append((string.ascii_lowercase)[random.randrange(len(string.ascii_lowercase))])
+# for _ in range(random.randrange(3, 5)):
+#     password.append((string.digits)[random.randrange(len(string.digits))])
+#     password.append((string.punctuation)[random.randrange(len(string.punctuation))])
+# random.shuffle(password)
+# pas = ''.join(password)
+# return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {(''.join(password))}</h2></center>"
 
 #average
 @app.route('/average')
