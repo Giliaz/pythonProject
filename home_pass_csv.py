@@ -28,7 +28,7 @@ def index():
 
 def generate_password():
     #while True:
-    password = ([chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))])
+    password = [chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))]
     paswwod_check = ''.join(password)
     #if re.match(r'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!"#$%&(){}\'*+,-./\\:;<>=?@\[\]^_`|~])', pas_check):
     #       break

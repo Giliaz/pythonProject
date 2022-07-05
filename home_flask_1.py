@@ -14,7 +14,7 @@ def index():
 #passwoerd
 @app.route('/password')
 def generate_password():
-     password = ([chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))])
+     password = [chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))]
      paswwod_check = ''.join(password)
      return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {paswwod_check}</h2></center>"
 
