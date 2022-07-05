@@ -14,6 +14,7 @@ def index():
 
 #passwoerd
 @app.route('/password')
+#def generate_password():
 # password = []
 # for _ in range(random.randrange(2, 5)):
 #     password.append((string.ascii_uppercase)[random.randrange(len(string.ascii_uppercase))])

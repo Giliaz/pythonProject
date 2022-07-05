@@ -18,10 +18,12 @@ def generate_password():
      paswwod_check = ''.join(password)
      return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {paswwod_check}</h2></center>"
 
+#def generate_password():
     #num = random.randrange(10, 21)
     #password = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation, k=num))
     #return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {password}</h2></center>"
 
+#def generate_password():
 #   password = []
 #   for _ in range(random.randrange(2, 5)):
 #       password.append((string.ascii_uppercase)[random.randrange(len(string.ascii_uppercase))])
@@ -36,7 +38,6 @@ def generate_password():
 #average
 @app.route('/average')
 def get_average_parameters():
-
    with open("hw.csv", newline='') as file:
        reader = csv.DictReader(file, delimiter=':')
        data = [(row['Index, Height(Inches), Weight(Pounds)']).split(',') for row in reader]
@@ -48,6 +49,7 @@ def get_average_parameters():
    average_weight = round(weight/len(data), 2)
    return f"<center><h2><u>average_height</u> = {average_height} inches, <u>average_weight</u> = {average_weight} pounds.</h2></center>"
 
+#def get_average_parameters():
 # with open("hw.csv", newline='') as file:
 #     reader = csv.DictReader(file, delimiter=',')
 #     count = 0
