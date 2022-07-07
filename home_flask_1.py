@@ -14,6 +14,7 @@ def index():
 #passwoerd
 @app.route('/password')
 def generate_password():
+    # this line creates a list of ASCII codes from 33 to 126 (characters, letters, numbers) for 10 to 20 characters
      password = [chr(random.randrange(33, 127)) for _ in range(random.randrange(10, 21))]
      paswwod_check = ''.join(password)
      return f"<center><h2><u>Password lenght {len(password)} symb.</u>:  {paswwod_check}</h2></center>"
