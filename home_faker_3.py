@@ -1,6 +1,6 @@
 import csv
 
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from webargs import validate, fields
 from webargs.flaskparser import use_kwargs
 
@@ -9,8 +9,9 @@ faker_instance = Faker("EN")
 
 app = Flask(__name__)
 
+
 @app.route("/")
-def hello_world():
+def start_page():
     return "<p>Start page....</p>"
 
 @app.route('/csv')
@@ -28,11 +29,7 @@ def generate_password(row):
             person.append(faker_instance.date_of_birth(minimum_age=20, maximum_age=70).strftime("%m.%d.%Y"))
             writer.writerow(person)
     with open("person.csv", encoding='utf8', newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=';')
-        line = ''
-        for row in reader:
-            line += f'{(str(row))}<br>'
-    return (line)
+          return render_template("s3_csv_table.html", csv=csvfile)
 
 
 if __name__ == '__main__':
