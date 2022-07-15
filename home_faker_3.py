@@ -36,7 +36,7 @@ def error_handler(error):
 
 @app.route("/")
 def start_page():
-    return '<h1>Start page....<a href = "csv">csv (?count=..)</a>, <a href = "bitcoin"> bitcoin (?currency=..) </a>, <a href = "bit_symbol"> bit_symbol (?currency=..)</a></h1>'
+    return '<h1>Start page....<a href = "csv">csv (?count=..)</a>, <a href = "bitcoin"> bitcoin (?currency=..&count=..)</a>.</h1>'
 
 
 @app.route('/csv')
@@ -56,12 +56,13 @@ def generate_password(count):
             writer.writerow(person)
 
     with open("person.csv", encoding='utf8', newline='') as csvfile:
-          return render_template("s3_csv_table.html", csv=csvfile)
+        return render_template("s3_csv_table.html", csv=csvfile)
 
 
 @app.route("/bitcoin")
 @use_kwargs({"currency": fields.Str(missing='USD'), }, location="query")
-def get_bitcoin(currency):
+@use_kwargs({"count": fields.Int(missing=1, validate=[validate.Range(min=1, max=1000)]), }, location="query")
+def get_bitcoin(currency, count):
     url = "https://bitpay.com/api/rates"
     result = requests.get(url, {})
 
@@ -73,27 +74,22 @@ def get_bitcoin(currency):
     result = result.json()
     for entry in result:
         if entry['code'] == currency:
-            return f"<h1> 1 bitcoin = {entry['rate']} {entry['code']} </h1>"
+
+            url = 'https://test.bitpay.com/currencies'
+            headers = {'X-Accept-Version': '2.0.0', 'Content-type': 'application/json'}
+            response = requests.get(url=url, headers=headers)
+
+            if response.status_code not in (HTTPStatus.OK,):
+                return Response(
+                    "ERROR: Something went wrong",
+                    status=response.status_code
+                )
+            response = response.json()
+            for dict in response['data']:
+                if dict['code'] == currency:
+                    return f"<h1> {count} bitcoin = {round(entry['rate'] * count, 2)} {entry['code']} {(dict['symbol'])}</h1>"
+            return "<h1>This currency symbol is missing !</h1>"
     return "<h1>This currency is missing !</h1>"
-
-
-@app.route("/bit_symbol")
-@use_kwargs({"currency": fields.Str(missing='USD'), }, location="query")
-def bit_symbol(currency):
-    url = 'https://test.bitpay.com/currencies'
-    headers = {'X-Accept-Version': '2.0.0', 'Content-type': 'application/json'}
-    response = requests.get(url=url, headers=headers)
-
-    if response.status_code not in (HTTPStatus.OK,):
-        return Response(
-            "ERROR: Something went wrong",
-            status=response.status_code
-        )
-    response = response.json()
-    for dict in response['data']:
-        if dict['code'] == currency:
-            return f"<h1>{(dict['symbol'])}<h1>"
-    return "<h1>This currency symbol is missing !</h1>"
 
 
 if __name__ == '__main__':
