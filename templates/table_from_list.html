@@ -1,7 +1,7 @@
-<table id="s3_csv_table">
+<table id="table_from_list">
 {% for row in csv %}
   <tr>
-  {% for col in row.split(";") %}
+  {% for col in row %}
   <td>{{ col }}</td>
   {% endfor %}
   </tr>
