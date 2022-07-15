@@ -41,7 +41,7 @@ def start_page():
 
 @app.route('/csv')
 @use_kwargs({"count": fields.Int(missing=10, validate=[validate.Range(min=1, max=1000)]), }, location="query")
-def generate_password(count):
+def generate_csv(count):
 
     with open("person.csv", 'w', encoding='utf8', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=";")
