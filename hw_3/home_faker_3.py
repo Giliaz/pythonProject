@@ -40,7 +40,7 @@ def start_page():
 
 
 @app.route('/csv')
-@use_kwargs({"count": fields.Int(missing=10, validate=[validate.Range(min=1, max=1000)]), }, location="query")
+@use_kwargs({"count": fields.Int(load_default=10, validate=[validate.Range(min=1, max=1000)]), }, location="query")
 def generate_csv(count):
     person =[]
     person.append(['first_name', 'last_name', 'email', 'password', 'date_of_birth'])
@@ -57,7 +57,7 @@ def generate_csv(count):
 
 
 @app.route("/bitcoin")
-@use_kwargs({"currency": fields.Str(missing='USD'), }, location="query")
+@use_kwargs({"currency": fields.Str(load_default='USD'), }, location="query")
 @use_kwargs({"count": fields.Int(missing=1, validate=[validate.Range(min=1, max=1000)]), }, location="query")
 def get_bitcoin(currency, count):
     url = "https://bitpay.com/api/rates"
@@ -91,5 +91,6 @@ def get_bitcoin(currency, count):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
