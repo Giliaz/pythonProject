@@ -57,7 +57,7 @@ def generate_csv(count):
 
 
 @app.route("/bitcoin")
-@use_kwargs({"currency": fields.Str(missing='USD'), }, location="query")
+@use_kwargs({"currency": fields.Str(load_default='USD'), }, location="query")
 @use_kwargs({"count": fields.Int(missing=1, validate=[validate.Range(min=1, max=1000)]), }, location="query")
 def get_bitcoin(currency, count):
     url = "https://bitpay.com/api/rates"
