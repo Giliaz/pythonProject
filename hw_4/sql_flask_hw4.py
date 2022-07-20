@@ -19,14 +19,15 @@ def index():
 @app.route('/country_sales')
 @use_kwargs({"country": fields.Str(load_default="%"), }, location="query")
 def get_country_sales(country):
-    query = f"SELECT UnitPrice AS Price_Unit, COUNT(Quantity) AS Total_Quanity,(COUNT(Quantity) * UnitPrice) AS Total_Sales " \
+    query = f"SELECT BillingCountry, UnitPrice AS Price_Unit, COUNT(Quantity) AS Total_Quantity,(COUNT(Quantity) * UnitPrice) AS Total_Sales " \
             f"FROM invoice_items as i1 " \
             f"JOIN invoices as i2 on i1.InvoiceId = i2.InvoiceId " \
-            f"WHERE BillingCountry LIKE '{country}';"
+            f"WHERE BillingCountry LIKE '{country}' " \
+            f"GROUP BY BillingCountry;"
 
-    records = execute_query(query)
-    return (f'<h3>For {country}:' if country != "%" else '<h3>For all countries:') + \
-           f' Price {records[0][0]} USD, Quantity {records[0][1]} ps., Sales {records[0][2]} USD.</h3>'
+    records = [('Country', 'Price', 'Quantity', 'Sales')]
+    records.extend(execute_query(query))
+    return render_template("table_from_list.html", csv=records)
 
 
 # track id
