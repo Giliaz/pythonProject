@@ -19,7 +19,7 @@ def index():
 @app.route('/country_sales')
 @use_kwargs({"country": fields.Str(load_default="%"), }, location="query")
 def get_country_sales(country):
-    query = f"SELECT UnitPrice AS Price_Unit, count(Quantity) AS Total_Quanity,(count(Quantity) * UnitPrice) AS Total_Sales " \
+    query = f"SELECT UnitPrice AS Price_Unit, COUNT(Quantity) AS Total_Quanity,(COUNT(Quantity) * UnitPrice) AS Total_Sales " \
             f"FROM invoice_items as i1 " \
             f"JOIN invoices as i2 on i1.InvoiceId = i2.InvoiceId " \
             f"WHERE BillingCountry LIKE '{country}';"
