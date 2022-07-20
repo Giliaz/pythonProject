@@ -5,13 +5,12 @@ name = "pypi"
 
 [packages]
 requests = "*"
+psutil = "*"
 memory-profiler = "*"
-flask = "*"
 webargs = "*"
-faker = "*"
+pytest = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.10"
-

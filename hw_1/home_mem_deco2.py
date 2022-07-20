@@ -1,5 +1,6 @@
 import functools
 import sys
+from memory_profiler import profile
 
 # декоратор для измерения использования памяти:
 # 1. sys.getsizeof(),
@@ -7,6 +8,7 @@ import sys
 # 3. @profile from memory_profiler. (закомменченно)
 
 # 3) декоратор memory_profiler, выводит таблицу используемой памяти декоратором test_mem(f): (для использования раскомментить)
+
 #@profile
 def test_mem(f):
     @functools.wraps(f)
