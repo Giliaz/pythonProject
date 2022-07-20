@@ -12,7 +12,7 @@ from memory_profiler import memory_usage
 
 # 4) декоратор memory_profiler, выводит таблицу используемой памяти декоратором test_mem(f): (для использования раскомментить)
 #@profile
-def test_mem(f):
+def mem_test(f):
     @functools.wraps(f)
     def deco(*args, **kwargs):
         result = f(*args, **kwargs)
@@ -29,7 +29,7 @@ def test_mem(f):
     return deco
 
 # декоратор функции memory_test():
-@test_mem
+@mem_test
 # 4) декоратор memory_profiler, выводит таблицу используемой памяти функцией memory_test(): (для использования раскомментить)
 #@profile
 def memory_test():
