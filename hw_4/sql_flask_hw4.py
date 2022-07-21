@@ -62,4 +62,8 @@ def get_time():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> cd182b5 (new options)
