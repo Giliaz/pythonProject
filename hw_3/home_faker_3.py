@@ -36,7 +36,7 @@ def error_handler(error):
 
 @app.route("/")
 def start_page():
-    return '<h1>Start page....<a href = "csv">csv (?count=..)</a>, <a href = "bitcoin"> bitcoin (?currency=..&count=..)</a>.</h1>'
+    return '<h3>Start page....<a href = "csv">csv (?count=..)</a>, <a href = "bitcoin"> bitcoin (?currency=..&count=..)</a>.</h3>'
 
 
 @app.route('/csv')
@@ -84,9 +84,9 @@ def get_bitcoin(currency, count):
             response = response.json()
             for dict in response['data']:
                 if dict['code'] == currency:
-                    return f"<h1> {count} bitcoin = {round(entry['rate'] * count, 2)} {entry['code']} {(dict['symbol'])}</h1>"
-            return "<h1>This currency symbol is missing !</h1>"
-    return "<h1>This currency is missing !</h1>"
+                    return f"<h3> {count} bitcoin = {round(entry['rate'] * count, 2)} {entry['code']} {(dict['symbol'])}</h1>"
+            return "<h3>This currency symbol is missing !</h3>"
+    return "<h3>This currency is missing !</h3>"
 
 
 if __name__ == '__main__':
