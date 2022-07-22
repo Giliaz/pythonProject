@@ -3,11 +3,9 @@ class Circle:
         self.x = x
         self.y = y
         self.radius = radius
-        print(self.x, self.y, self.radius)
 
-    def in_circle(self, f):
-        print(f.x,  f.y)
-        return (self.x - f.get_x()) ** 2 + (self.y - f.get_y()) ** 2 < self.radius ** 2
+    def contains(self, point):
+        return (self.x - point.x) ** 2 + (self.y - point.y) ** 2 < self.radius ** 2
 
 
 class Point:
@@ -15,15 +13,7 @@ class Point:
         self.x = x
         self.y = y
 
-    def get_x(self):
-        return self.x
 
-    def get_y(self):
-        return self.y
-
-#circle x, y, radius
 a = Circle(x=5, y=5, radius=15)
-#point x, y
 b = Point(x=-5, y=-5)
-
-print(a.in_circle(b))
+print(a.contains(b))
