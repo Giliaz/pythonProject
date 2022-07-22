@@ -14,6 +14,6 @@ class Point:
         self.y = y
 
 
-a = Circle(x=5, y=5, radius=15)
-b = Point(x=-5, y=-5)
-print(a.contains(b))
+circle = Circle(x=5, y=5, radius=15)
+point = Point(x=-5, y=-5)
+print(circle.contains(point))
