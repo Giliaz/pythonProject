@@ -52,6 +52,6 @@ class frange:
         return iter(self.list_)
 
 
-for i in frange(-3.1, -0.2, 0.21):
+a = frange(12.367, 5.121, -0.121)
+for i in a:
     print(i)
-
