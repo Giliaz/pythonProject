@@ -55,3 +55,6 @@ class frange:
 a = frange(12.367, 5.121, -0.121)
 for i in a:
     print(i)
+
+if __name__ == '__main--':
+    pass
