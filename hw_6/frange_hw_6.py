@@ -11,7 +11,7 @@ class frange:
             self.step = 1
             self.flag = True
             if type(self.start) == float:
-                self.around = len(str(float(self.start)).split('.')[1])
+                self.around = len(str(self.start).split('.')[1])
             else:
                 self.around = 0
         elif len([*args]) == 3:
@@ -21,12 +21,12 @@ class frange:
             else:
                 self.flag = False
             if type(self.start) == float:
-                self.around = len(str(float(self.start)).split('.')[1])
+                self.around = len(str(self.start).split('.')[1])
             else:
                 self.around = 0
             if type(self.step) == float:
-                if self.around < len(str(float(self.step)).split('.')[1]):
-                    self.around = len(str(float(self.step)).split('.')[1])
+                if self.around < len(str(self.step).split('.')[1]):
+                    self.around = len(str(self.step).split('.')[1])
         else:
             raise TypeError(f"frange() params expected at least from 1 to 3 argument, got {len(args)}")
 
