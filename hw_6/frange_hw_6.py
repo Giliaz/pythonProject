@@ -1,60 +1,58 @@
 class frange:
     def __init__(self, *args):
-        self.step = None
-        self.end = None
-        self.start = None
-        self.list_ = []
-        self.set_params(args)
-
-    def set_params(self, args):
         if len([*args]) == 1:
             self.end = args[0]
-            if type(self.end) is float:
-                self.end = int(self.end) + 1
-            self.list_ = [num for num in range(self.end)]
+            self.start = 0
+            self.step = 1
+            self.around = 0
+            self.flag = True
         elif len([*args]) == 2:
             self.start, self.end = args
-            if type(self.start) is int:
-                if (type(self.end)) is float:
-                    self.end = int(self.end) + 1
-                self.list_ = [num for num in range(self.start, self.end)]
+            self.step = 1
+            self.flag = True
+            if type(self.start) == float:
+                self.around = len(str(float(self.start)).split('.')[1])
             else:
-                if self.end > self.start:
-                    around = len(str(float(self.start)).split('.')[1])
-                    self.list_ = [float(self.start)]
-                    while self.end > self.start + 1:
-                        self.start = round(self.start + 1, around)
-                        self.list_.append(self.start)
+                self.around = 0
         elif len([*args]) == 3:
             self.start, self.end, self.step = args
-            if type(self.start) == int and type(self.end) == int and type(self.step) == int:
-                self.list_ = [num for num in range(self.start, self.end, self.step)]
+            if self.start <= self.end:
+                self.flag = True
             else:
-                if len(str(float(self.step)).split('.')[1]) > len(str(float(self.start)).split('.')[1]):
-                    around = len(str(float(self.step)).split('.')[1])
-                else:
-                    around = len(str(float(self.start)).split('.')[1])
-                if self.start < self.end and self.step > 0:
-                    self.list_ = [float(self.start)]
-                    while self.end > self.start + self.step:
-                        self.start = round(self.start + self.step, around)
-                        self.list_.append(self.start)
-                if self.start > self.end and self.step < 0:
-                    self.list_ = [float(self.start)]
-                    while self.end < self.start + self.step:
-                        self.start = round(self.start + self.step, around)
-                        self.list_.append(self.start)
-
+                self.flag = False
+            if type(self.start) == float:
+                self.around = len(str(float(self.start)).split('.')[1])
+            else:
+                self.around = 0
+            if type(self.step) == float:
+                if self.around < len(str(float(self.step)).split('.')[1]):
+                    self.around = len(str(float(self.step)).split('.')[1])
         else:
             raise TypeError(f"frange() params expected at least from 1 to 3 argument, got {len(args)}")
 
+    def __next__(self):
+        if self.flag and self.step > 0:
+            if self.start >= self.end:
+                raise StopIteration('Stop')
+            else:
+                result = round(self.start, self.around)
+                self.start += self.step
+                return result
+        elif self.flag is False and self.step < 0:
+            if self.start <= self.end:
+                raise StopIteration('Stop')
+            else:
+                result = round(self.start, self.around)
+                self.start += self.step
+                return result
+        else:
+            raise StopIteration('Stop')
+
     def __iter__(self):
-        return iter(self.list_)
+        return self
 
 
-a = frange(12.367, 5.121, -0.121)
-for i in a:
+for i in frange(1.33, 0.7, -0.025):
     print(i)
 
-if __name__ == '__main--':
-    pass
+
