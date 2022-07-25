@@ -1,5 +1,5 @@
 
-class Colorized:
+class сolorized:
     def __init__(self, key):
         self.key = key
         self.colors = {'WHITE': '\033[97m',
@@ -18,12 +18,12 @@ class Colorized:
     def __exit__(self, exc_type, exc_val, exc_tb):
         Exception(exc_type)
         self.key = 'WHITE'
-        print(self.colors[self.key], f'Printed in default colors {self.key}')
+        print(self.colors[self.key])
 
 
-with Colorized('RED') as key:
+with сolorized('RED') as key:
     print(f'Printed in {key} colors')
-
+print("Printed default color")
 
 
 
