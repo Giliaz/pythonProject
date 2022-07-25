@@ -19,7 +19,7 @@ class Circle(Shape):
     def square(self):
         return math.pi * self.radius ** 2
 
-    def __in__(self, point):
+    def __contains__(self, point):
         return (self.x - point.x) ** 2 + (self.y - point.y) ** 2 < self.radius ** 2
 
 
@@ -49,15 +49,15 @@ class Parallelogram(Rectangle):
     def print_angle(self):
         print(self.angle)
 
-    def square(self):
-        return self.height * self.width
-
     def __str__(self):
         result = super().__str__()
-        return result + f'\nParallelogram: {self.width}, {self.height}, {self.angle}'
+        return result + f'\nParallelogram: {self.height}, {self.width}, {self.angle}'
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+
+    def square(self):
+        return self.height * self.width
 
 
 class Triangle(Shape):
@@ -84,3 +84,8 @@ class Scene:
 
     def __str__(self):
         pass
+
+
+a_circle = Circle(x=5, y=5, radius=15)
+b_point = Point(x=-5, y=-5)
+print(b_point in a_circle)
