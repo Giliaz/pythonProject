@@ -21,7 +21,7 @@ class сolorized:
         print(self.colors[self.key])
 
 
-with сolorized('RED') as key:
+with сolorized('CYAN') as key:
     print(f'Printed in {key} colors')
 print("Printed default color")
 
