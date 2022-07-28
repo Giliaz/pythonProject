@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from webargs import fields
 from webargs.flaskparser import use_kwargs
 
-from hw_5.sql_handler import execute_query
+from sql_handler import execute_query
 
 app = Flask(__name__)
 
