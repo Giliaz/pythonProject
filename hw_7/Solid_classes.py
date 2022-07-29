@@ -17,17 +17,20 @@ class Person:
         self.name = name
         self.age = age
 
+    def __str__(self):
+        return self.__class__.__name__
+
     def can_walk(self):
-        print(self.__class__.__name__ + ', can walk..')
+        print(f'{self}, can walk..')
 
     def can_run(self):
-        print(self.__class__.__name__ + ', can run..')
+        print(f'{self}, can run..')
 
     def can_eat(self):
-        print(self.__class__.__name__ + ', can eat..')
+        print(f'{self}, can eat..')
 
     def can_sleep(self):
-        print(self.__class__.__name__ + ', can sleep..')
+        print(f'{self}, can sleep..')
 
 
 class Teacher(Person):
@@ -36,7 +39,7 @@ class Teacher(Person):
         self.stage = stage
 
     def can_teach(self):
-        print(self.__class__.__name__ + ', can teach..')
+        print(f'{self}, can teach..')
 
     def can_sleep(self):
         super().can_sleep()
@@ -49,7 +52,7 @@ class Student(Person):
         self.course = course
 
     def can_study(self):
-        print(self.__class__.__name__ + ', can study..')
+        print(f'{self},, can study..')
 
     def can_eat(self):
         super().can_eat()
@@ -72,4 +75,4 @@ print(f'Group has {group.print_group_len()} persons.')
 
 to_print = group.return_group()
 for person in to_print:
-    print(person.__class__.__name__, person.name, person.age, 'years old.')
+    print(person, person.name, person.age, 'years old.')
