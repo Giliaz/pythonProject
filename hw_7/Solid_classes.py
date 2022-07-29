@@ -52,7 +52,7 @@ class Student(Person):
         self.course = course
 
     def can_study(self):
-        print(f'{self},, can study..')
+        print(f'{self}, can study..')
 
     def can_eat(self):
         super().can_eat()
