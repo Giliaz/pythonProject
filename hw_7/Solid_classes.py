@@ -13,27 +13,34 @@ class Group:
 
 
 class Person:
-    def __init__(self, name=None, age=None):
-        self.name = name
-        self.age = age
+    def __init__(self, *args):
+        self.name, self.age, *args = args
 
     def __str__(self):
         return self.__class__.__name__
 
+
+class Walker(Person):
     def can_walk(self):
         print(f'{self}, can walk..')
 
+
+class Runner(Person):
     def can_run(self):
         print(f'{self}, can run..')
 
+
+class Eater(Person):
     def can_eat(self):
         print(f'{self}, can eat..')
 
+
+class Sleeper(Person):
     def can_sleep(self):
         print(f'{self}, can sleep..')
 
 
-class Teacher(Person):
+class Teacher(Walker, Runner, Eater, Sleeper):
     def __init__(self, name=None, age=None, stage=0):
         super().__init__(name, age)
         self.stage = stage
@@ -46,7 +53,7 @@ class Teacher(Person):
         print('"Хоть не просыпайся..."\n')
 
 
-class Student(Person):
+class Student(Walker, Runner, Eater, Sleeper):
     def __init__(self, name=None, age=None, course=0):
         super().__init__(name, age)
         self.course = course
@@ -56,15 +63,15 @@ class Student(Person):
 
     def can_eat(self):
         super().can_eat()
-        print('"Ем как не в себя!"\n')
+        print('"Ем как не в себя.."\n')
 
 
 St_1 = Student('John', 21, 4)
-print(St_1.name, St_1.age, St_1.course)
+print(f'{St_1} {St_1.name}, age {St_1.age}, course of study {St_1.course}.')
 St_1.can_study()
 St_1.can_eat()
 Tch_1 = Teacher('Ben', 47, 10)
-print(Tch_1.name, Tch_1.age, Tch_1.stage)
+print(f'{Tch_1} {Tch_1.name}, age {Tch_1.age}, teaching experience {Tch_1.stage} years.')
 Tch_1.can_teach()
 Tch_1.can_sleep()
 
