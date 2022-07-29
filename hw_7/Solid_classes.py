@@ -43,7 +43,7 @@ class Teacher(Person):
 
     def can_sleep(self):
         super().can_sleep()
-        print('"Хоть не просыпайся, чтобы их не видеть..."\n')
+        print('"Хоть не просыпайся..."\n')
 
 
 class Student(Person):
