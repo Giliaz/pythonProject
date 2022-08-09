@@ -9,6 +9,7 @@ psutil = "*"
 memory-profiler = "*"
 webargs = "*"
 pytest = "*"
+flake8 = "*"
 
 [dev-packages]
 
