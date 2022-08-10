@@ -8,5 +8,5 @@ def cdw_narciss_num(number):
     return number == summ
 
 
-print(cdw_narciss(153))
-print(cdw_narciss(1652))
+print(cdw_narciss_num(153))
+print(cdw_narciss_num(1652))
