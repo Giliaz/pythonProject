@@ -9,4 +9,4 @@ def cdw_rgb(r, g, b):
     return(result)
 
 
-print(rgb(257, 155, -2))
+print(cdw_rgb(257, 155, -2))
