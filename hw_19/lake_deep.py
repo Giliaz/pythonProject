@@ -21,13 +21,8 @@ def lake_deep(deep: list) -> int:
 # ----------------visualization block--------------------
 def visual_lake(deep: list) -> None:
     visual = [[deep[j] if i < deep[j] else ' ' * len(str(deep[j])) for j in range(len(deep))] for i in range(max(deep))]
-
-    for i in range(max(deep) - 1, -1, -1):
-        print(*visual[i][:])
-
-    for i in range(len(deep)):
-        print('~' * len(str(deep[i])), end=' ')
-    print()
+    [print(*visual[i][:]) for i in range(max(deep) - 1, -1, -1)]
+    print(*['~' * len(str(deep[i])) for i in range(len(deep))])
     return
 
 
