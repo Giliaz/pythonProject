@@ -1,4 +1,4 @@
-#-------------------logical block----------------------
+# -------------------logical block----------------------
 def lake_deep(deep: list) -> int:
     if not deep:
         return 0
@@ -14,17 +14,13 @@ def lake_deep(deep: list) -> int:
         else:
             result.append(h - min_h)
 
-    visual_lake(deep)
+    visual_lake(deep)  # on/of visualization
     return max(result)
 
-#----------------vizualization block--------------------
-def visual_lake(deep: list) -> None:
-    visual = [[' ' * len(str(deep[j])) for j in range(len(deep))] for i in range(max(deep))]
 
-    for i in range(len(deep)):
-        for j in range(max(deep)):
-            if j < deep[i]:
-                visual[j][i] = deep[i]
+# ----------------visualization block--------------------
+def visual_lake(deep: list) -> None:
+    visual = [[deep[j] if i < deep[j] else ' ' * len(str(deep[j])) for j in range(len(deep))] for i in range(max(deep))]
 
     for i in range(max(deep) - 1, -1, -1):
         print(*visual[i][:])
